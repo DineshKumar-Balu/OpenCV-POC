@@ -75,7 +75,7 @@ def main():
 
     st.title("Video Timestamp Extractor")
     st.write(os.system("ls -l"))
-    st.write(os.system("which tesseract")
+    st.write(os.system("which tesseract"))
 
     uploaded_file = st.file_uploader("Upload a video file (MP4, AVI, MOV)", type=["mp4", "avi", "mov"])
     uploaded_csv = "./csvsheetdb1.csv"  
