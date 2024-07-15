@@ -10,6 +10,9 @@ import subprocess
 import sys
 sys.path.append("./tesseract")
 
+fixed_but_fugly = subprocess.run('which tesseract',shell=True,check=True, text=True)
+st.write(fixed_but_fugly)
+
 # Set Tesseract path for Linux (Streamlit Cloud runs on Linux)
 
 pytesseract.pytesseract.tesseract_cmd = "./tesseract"
