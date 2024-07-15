@@ -8,16 +8,16 @@ import os
 import platform
 import subprocess 
 import sys
-sys.path.append("./tesseract")
+sys.path.append("tessey")
 
 # Set Tesseract path for Linux (Streamlit Cloud runs on Linux)
+
 
 pytesseract.pytesseract.tesseract_cmd = r'/usr/bin/tesseract'
 
 def convert_to_h264(input_video_path, output_video_path):
     # Using ffmpeg to convert to H.264
     cmd = f"ffmpeg -y -i {input_video_path} -c:v libx264 {output_video_path}"
-    subprocess.run(cmd, shell=True)
 
 def get_time_from_frame(img):
     custom_config = r'--oem 3 --psm 6'
@@ -39,7 +39,7 @@ def get_initial_time(video_path):
 def get_video_end_time(video_path):
     vid = cv2.VideoCapture(video_path)
     total_frames = int(vid.get(cv2.CAP_PROP_FRAME_COUNT))
-    vid.set(cv2.CAP_PROP_POS_FRAMES, total_frames - 1)
+    vid.set(cv2.CAP_PROP_POS_FRAMES, total_frames - 2)
     is_success, img = vid.read()
     vid.release()
     if is_success:
@@ -72,10 +72,6 @@ def suggest_values(search_term, df, columns):
 def main():
     st.set_page_config(page_title="Video Player", page_icon="📹", layout="centered")
 
-    st.title("Video Timestamp Extractor")
-    st.write(os.system("ls -l"))
-    st.write(os.system("which tesseract"))
-
     uploaded_file = st.file_uploader("Upload a video file (MP4, AVI, MOV)", type=["mp4", "avi", "mov"])
     uploaded_csv = "./csvsheetdb1.csv"  
 
@@ -95,13 +91,16 @@ def main():
         initial_time = get_initial_time(h264_video_path)
         end_time = get_video_end_time(h264_video_path)
 
-        st.write(initial_time)
-        st.write(end_time)
 
         if initial_time and end_time:
-            st.write("Initial Time from Video:", initial_time)
-            st.write("End Time from Video:", end_time)
+            c1,c2 = st.columns(2)
+            with c1:
+                st.write("Initial Time from Video:", initial_time)
+            with c2:
+                st.write("End Time from Video:", end_time)
 
+            st.write()
+            c3 = st.columns(1)
             # Manual time adjustment inputs
             col1, col2 = st.columns(2)
             with col1:
