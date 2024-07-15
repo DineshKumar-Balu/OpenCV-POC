@@ -30,7 +30,7 @@ def convert_to_h264(input_video_path, output_video_path):
 def get_time_from_frame(img):
     custom_config = r'--oem 3 --psm 6'
     text = pytesseract.image_to_string(img, config=custom_config)
-    st.write(text)
+    # st.write(text)
     pattern = re.compile(r'\d{2}:\d{2}:\d{2}')
     res = pattern.search(text)
     if res:
@@ -88,8 +88,8 @@ def main():
 
     if uploaded_file:
         os.makedirs("./assets", exist_ok=True)
-        st.write(os.listdir("./"))
-        st.write(os.listdir("./assets"))
+        # st.write(os.listdir("./"))
+        # st.write(os.listdir("./assets"))
         video_path = "./assets/out.mp4"
         h264_video_path = "./assets/out_h264.mp4"
         
@@ -103,8 +103,8 @@ def main():
         initial_time = get_initial_time(h264_video_path)
         end_time = get_video_end_time(h264_video_path)
 
-        st.write(initial_time)
-        st.write(end_time)
+        # st.write(initial_time)
+        # st.write(end_time)
         if initial_time and end_time:
             c1,c2 = st.columns(2)
             with c1:
