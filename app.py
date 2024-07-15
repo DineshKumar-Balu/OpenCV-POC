@@ -30,6 +30,7 @@ def convert_to_h264(input_video_path, output_video_path):
 def get_time_from_frame(img):
     custom_config = r'--oem 3 --psm 6'
     text = pytesseract.image_to_string(img, config=custom_config)
+    st.write(text)
     pattern = re.compile(r'\d{2}:\d{2}:\d{2}')
     res = pattern.search(text)
     if res:
