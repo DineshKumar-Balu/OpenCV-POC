@@ -85,7 +85,8 @@ def main():
 
     if uploaded_file:
         os.makedirs("./assets", exist_ok=True)
-
+        st.write(os.listdir("./"))
+        st.write(os.listdir("./assets"))
         video_path = "./assets/out.mp4"
         h264_video_path = "./assets/out_h264.mp4"
         
@@ -99,6 +100,8 @@ def main():
         initial_time = get_initial_time(h264_video_path)
         end_time = get_video_end_time(h264_video_path)
 
+        st.write(initial_time)
+        st.write(end_time)
 
         if initial_time and end_time:
             c1,c2 = st.columns(2)
