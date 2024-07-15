@@ -12,7 +12,7 @@ sys.path.append("./tesseract")
 
 # Set Tesseract path for Linux (Streamlit Cloud runs on Linux)
 
-pytesseract.pytesseract.tesseract_cmd = "./tesseract/tesseract"
+pytesseract.pytesseract.tesseract_cmd = "./tesseract"
 
 
 def convert_to_h264(input_video_path, output_video_path):
