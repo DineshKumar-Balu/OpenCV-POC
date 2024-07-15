@@ -103,7 +103,7 @@ def main():
 
         st.write(initial_time)
         st.write(end_time)
-
+        initial_time = "00:00:00"
         if initial_time and end_time:
             c1,c2 = st.columns(2)
             with c1:
