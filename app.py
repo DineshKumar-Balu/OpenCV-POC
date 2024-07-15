@@ -16,8 +16,16 @@ sys.path.append("tessey")
 pytesseract.pytesseract.tesseract_cmd = r'/usr/bin/tesseract'
 
 def convert_to_h264(input_video_path, output_video_path):
-    # Using ffmpeg to convert to H.264
-    cmd = f"ffmpeg -y -i {input_video_path} -c:v libx264 {output_video_path}"
+    command = [
+        'ffmpeg', '-y',
+        '-i', './assets/out.mp4',
+        '-c:v', 'libx264',
+        './assets/out_h264.mp4'
+    ]
+
+    # Execute the command
+    result = subprocess.run(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+
 
 def get_time_from_frame(img):
     custom_config = r'--oem 3 --psm 6'
