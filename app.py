@@ -10,9 +10,6 @@ import subprocess
 import sys
 sys.path.append("./tesseract")
 
-fixed_but_fugly = subprocess.run('which tesseract',shell=True,check=True, text=True)
-st.write(fixed_but_fugly)
-
 # Set Tesseract path for Linux (Streamlit Cloud runs on Linux)
 
 pytesseract.pytesseract.tesseract_cmd = "./tesseract"
@@ -77,6 +74,8 @@ def main():
     st.set_page_config(page_title="Video Player", page_icon="📹", layout="centered")
 
     st.title("Video Timestamp Extractor")
+    st.write(os.system("ls -l"))
+    st.write(os.system("which tesseract")
 
     uploaded_file = st.file_uploader("Upload a video file (MP4, AVI, MOV)", type=["mp4", "avi", "mov"])
     uploaded_csv = "./csvsheetdb1.csv"  
