@@ -7,6 +7,8 @@ from datetime import datetime
 import os
 import platform
 import subprocess 
+import sys
+sys.path.append("./tesseract")
 
 # Set Tesseract path for Linux (Streamlit Cloud runs on Linux)
 
