@@ -40,7 +40,7 @@ def get_time_from_frame(img):
 def get_initial_time(video_path):
     vid = cv2.VideoCapture(video_path)
     total_frames = int(vid.get(cv2.CAP_PROP_FRAME_COUNT))
-    vid.set(cv2.CAP_PROP_POS_FRAMES, total_frames - total_frames+ 2)
+    vid.set(cv2.CAP_PROP_POS_FRAMES, total_frames - total_frames+ 0.5)
     is_success, img = vid.read()
     vid.release()
     if is_success:
