@@ -9,6 +9,8 @@ import platform
 import subprocess 
 import sys
 sys.path.append("tessey")
+from streamlit_player import st_player
+import webview
 
 # Set Tesseract path for Linux (Streamlit Cloud runs on Linux)
 
@@ -40,7 +42,7 @@ def get_time_from_frame(img):
 def get_initial_time(video_path):
     vid = cv2.VideoCapture(video_path)
     total_frames = int(vid.get(cv2.CAP_PROP_FRAME_COUNT))
-    vid.set(cv2.CAP_PROP_POS_FRAMES, total_frames - total_frames+ 0.5)
+    vid.set(cv2.CAP_PROP_POS_FRAMES, total_frames - total_frames+ 1)
     is_success, img = vid.read()
     vid.release()
     if is_success:
@@ -162,6 +164,13 @@ def main():
 
             # Display video with specified start time
             st.video(h264_video_path, start_time=start_seconds + jump_seconds, format='video/mp4', autoplay=True)
+            # video_html = f"""
+            # <video controls width="640" height="360">
+            #     <source src="./assets/out.mp4#t={0+jump_seconds}" type="video/mp4">
+            #     Your browser does not support the video tag.
+            # </video>
+            # """
+            # st.write(video_html,unsafe_allow_html = True)
 
         else:
             st.warning("Could not extract initial or end time from video.")
